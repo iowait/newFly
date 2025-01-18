@@ -1,0 +1,77 @@
+#!/bin/bash
+#
+# Manage both jpgs and mkv video files
+# Will be called periodically from CRON
+#
+# Recording settings
+# From 0700-1900 every 5 minutes = 12/hr * 13 = 156
+
+MAX=156
+let THUMB_MAX=MAX+5
+
+ROOT_DIR=/pub/comwww/fly
+JPG_DIR=$ROOT_DIR/www/video/webcam2/snap
+VID_DIR=$ROOT_DIR/www/video/webcam2/record
+
+# First JPG
+# purge old stuff, but always keep at least MAX
+cd $JPG_DIR || exit 1
+let count=0
+for file in `ls -1 *.jpg`; do
+    let count++
+    if [ $count -gt $MAX ]; then
+       rm $file
+    fi
+done
+
+# thumbnails
+cd $JPG_DIR/thumbs || exit 1
+let count=0
+for file in `ls -1 *.jpg`; do
+    let count++
+    if [ $count -gt $THUMB_MAX ]; then
+       rm $file
+    fi
+done
+
+# Next video
+# First convert last MAX .mkv to .mp4
+# Then purge old stuff, but always keep at least MAX
+cd $VID_DIR || exit 1
+let count=0
+for file in `ls -1 *.mkv`; do
+    let count++
+
+    # did we convert, strip the extension
+    newFile=`echo $file | sed 's/.mkv//'`
+    if [ -f $newFile.mp4 ]; then
+        echo "OK $newFile.mp4 exists"
+    else
+        # ffmpeg -i $file $newFile.avi
+        ffmpeg -i $file -pix_fmt yuv420p $newFile.mp4
+        # to extract one image from 15 seconds in
+        # ffmpeg -ss 00:00:15 -i video.mp4 -vf scale=350:-1 -vframes 1 image.jpg
+    fi
+
+    if [ $count -gt $MAX ]; then
+        break;
+    fi
+done
+
+# Now another pass, clean up old .mp4 and .mkv
+let count=0
+for file in `ls -1 *.mkv`; do
+    let count++
+    if [ $count -gt $MAX ]; then
+       rm $file
+    fi
+done
+
+let count=0
+for file in `ls -1 *.mp4`; do
+    let count++
+    if [ $count -gt $MAX ]; then
+       rm $file
+    fi
+done
+

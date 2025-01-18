@@ -1,0 +1,251 @@
+/* ---------------------------------------  |
+|    Author     : Ted Timmons               |
+|    Created  : Mar  9, 2015, 3:39 PM       |
+|    Modified : Nov 30, 2016, 9:41 PM       |
+------------------------------------------ */
+
+/* =================================================*/
+/*   START - RULES NOT RELATED TO NAV - GENERAL USE  */
+
+body {
+    font-size:22px;
+    line-height: 32px;
+    word-wrap:break-word !important;
+    font-family: 'Open Sans', sans-serif;
+
+    background-image: url("../imgs/bg2.gif");
+    background-repeat: repeat-x;
+    height:100%;
+    min-height: 100%;
+    position:relative;
+} 
+a.clsBack {
+    display: block;    
+    color: #b00;
+    text-align: center;
+    /*margin: 0 auto;*/
+    /*width: 780px;*/
+}
+a.clsBlack{color: #000;}
+
+.clsCenter{text-align: center;}
+
+.clsCenter36{
+    text-align: center;
+    font-size: 36px;
+}
+.clsCenter24{
+    text-align: center;
+    font-size: 24px;
+}
+.clsSmaller{font-size: 14px; color: #b00;}
+/* #divFooter .clsSmaller{font-size: 14px; color: #b00;} */
+
+#divNavHeader{
+    /*  for Ted Timmons, CFII-G */
+    height:25px;
+    padding: 10px 5px;  
+    color: black;     
+    text-align: center;
+    font-size: 24px;
+}
+
+#divNavHeader a:link, a:visited {
+    /*display: block;*/
+    font-weight: bold;
+    font-size: 14px;
+    color: #ffffff;
+    background-color: #b00;
+    width: 120px;
+    text-align: center;
+    padding: 4px;
+    text-decoration: none;
+    border-radius: 8px;
+}
+
+#divNavHeader a:hover, a:active {
+    background-color: #000;
+    color: #fff;
+}
+
+#divFooter{
+    margin: 0 auto;
+    height:25px;
+    padding: 10px 5px;  
+    color: #000;         
+    text-align: center;
+    width: 800px;
+    font-size: 12px;
+}
+
+
+
+
+
+
+/*
+   Removed 4/23/2015
+   p {text-align: center;}
+*/
+
+/*   STOP - RULES NOT RELATED TO NAV - GENERAL USE  */
+/* =================================================*/
+
+
+/* ============================================================*/
+/*                    START Modal Menu Rules                   */
+/*                                                             */
+.modalDialog {
+    position: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 99999;
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+.modalDialog p{text-align: center; font-size: 36px;}
+
+.modalDialog:target {
+    opacity:1;
+    pointer-events: auto;
+}
+
+.modalDialog > div {
+    width: 300px;
+    position: relative;
+    margin: 10% auto;
+    padding: 5px 20px 13px 20px;
+    border-radius: 10px;
+    background: #fff;
+    background: -moz-linear-gradient(#fff, #999);
+    background: -webkit-linear-gradient(#fff, #999);
+    background: -o-linear-gradient(#fff, #999);
+}
+.close {
+    background: #606061;
+    color: #FFFFFF;
+    line-height: 25px;
+    position: absolute;
+    right: -12px;
+    text-align: center;
+    top: -10px;
+    width: 24px;
+    text-decoration: none;
+    font-weight: bold;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    -moz-box-shadow: 1px 1px 3px #000;
+    -webkit-box-shadow: 1px 1px 3px #000;
+    box-shadow: 1px 1px 3px #000;
+}
+
+.close:hover { background: #00d9ff; }
+
+
+
+
+/*  -------------------- STOP Modal --------------------*/
+
+
+
+
+
+
+/* ============================================================*/
+/*                    START NAV Menu Rules                     */
+/*
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
+@import url(http://fonts.googleapis.com/css?family=Bree+Serif);
+*/
+
+nav { 
+    margin: 10px auto;
+    background-color: #b00;  
+    border-radius: 3px; /* was 25px, changed 11/30/2016 */
+    /*  linear-gradient added 11/30/2016 */
+    /* background-image: linear-gradient(to bottom, #cee 0%, #8bc 49%, #7ab 51%, #089 100%); */
+    width:600px;
+}
+nav h1 {
+    font-size: 60px;
+    font-family: 'Bree Serif', 'serif';
+    text-align: center;
+    color: #fff;
+    margin-top: 100px;
+}
+nav h3 {
+    font-size: 30px;
+    text-align: center;
+    color: #fff;
+}
+nav h3 a {color: #fff;}
+
+nav a {
+    display: block;
+    padding: 0 10px;	
+    color: #fff;
+    font-size: 20px;
+    line-height: 60px;
+    text-decoration: none;
+    /* background-image: linear-gradient(to bottom, #cee 0%, #8bc 49%, #7ab 51%, #089 100%); */
+    /* added 11/30/2016 */
+    background-image: linear-gradient(to bottom, #e07e7e 0%, #a00201 100%);
+}
+nav a:hover {background-color: #000000; }
+
+
+nav ul {
+    padding:0;
+    margin:0;
+    list-style: none;
+    position: relative;
+    z-index: 50;
+}
+nav ul li {
+    display:inline-block;
+    background-color: #b00;  /* was: #E64A19;  */
+    border-radius: 25px;  /* CSS3 */ 
+}
+
+/* Hide Dropdowns by Default */
+nav ul ul {
+    display: none;
+    position: absolute; 
+    top: 60px;
+}
+
+/* Display Dropdowns on Hover */
+nav ul li:hover > ul {display:inherit;}
+
+/* Fisrt Tier Dropdown */
+nav ul ul li {
+    width:170px;
+    float:none;
+    display:list-item;
+    position: relative;
+    border-radius: 0;  /* CSS3 */  
+    z-index: 50;
+}
+
+/* Second, Third and more Tiers	*/
+nav ul ul ul li {
+    position: relative;
+    top:-60px; 
+    left:170px;
+    z-index: 50;
+}
+
+/* Change this in order to change the Dropdown symbol */
+nav li > a:after { content:  ' +'; }
+nav li > a:only-child:after { content: ''; }
+
+/*  -------------------- STOP Menu --------------------*/

@@ -1,0 +1,79 @@
+Welcome to FLY. See below and COPYING file for licensing info.
+?'s / need help / want to help - contact John Murtari <john@murtari.org>
+http://www.SoftwareWorkshop.com/john.murtari
+
+See INSTALL file for how to get it installed and running.
+Needs work as of 6/3/2020, contact me if you have issues, need help.
+
+--------------
+
+Copyright (C) 1995-2020  John Murtari
+This file is part of FLY flight management software
+FLY is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+FLY is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with FLY.  If not, see <https://www.gnu.org/licenses/>.
+
+---------------
+####### FLY directory structure
+
+-- top dir
+   For most pages, two files, e.g.
+   edit_member_content.php (has the layout of the page/fields)
+   edit_member.php (invoked for actions on the page)
+
+   .gitignore - crucial for missing secure files
+
+-- backups
+   not in git
+   db backups and web pages
+
+-- bin
+   convenience scripts
+   needs fix for passwords: dumpDBs.sh (removed from git)
+
+-- css
+   style sheets
+
+-- etc
+   used for install, generic db
+   alter scripts to update DB
+
+-- hfl
+   contains upload .igc files for hi far long competition
+
+-- images
+   graphics used
+
+-- js
+   javascript libs used
+
+-- lib
+   IGC.php - function to read .igc flight track
+   common.inc - general utility functions used in php code
+   config.inc - general layout/configuration info (no security stuff)
+   database.inc - check/open connection to DB
+   db_funcs.inc - utility DB functions
+   fly_funcs.inc - utility functions specific to fly
+   footer.inc - end of every page, contains code to display session variables
+                based on DebugLevel
+   header.inc - start of every page, maintains session, remember user.
+   hfl.inc - defines user for high/far/log
+   hostname.inc - ?
+   mode.inc - contains secure info, passwords, emails (not in git)
+   sess_funcs.inc - login session functions
+   states.php - state abbrev. ?
+
+-- photos
+   not in git
+   glider and member photos (secure)
+  
+

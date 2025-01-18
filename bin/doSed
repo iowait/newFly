@@ -1,0 +1,45 @@
+#!/bin/bash
+#
+# do the named sed script for all matching file
+#
+if (( $# < 3 )); then
+        echo "Usage: tes|exe <sed-script> files..."
+        exit 1;
+fi
+
+mode=$1
+script=$2
+if [ ! -f $script ]; then
+  echo "ERROR, can't find $script"
+  exit 1
+fi
+shift 2
+files=$@
+
+for fileName in $files; do
+
+        if [ -h $fileName ]; then
+           echo "$fileName is a symbolic link, skipping..."
+           continue;
+        fi
+
+        cat $fileName | sed -f $script > /tmp/$fileName:t
+        diff $fileName /tmp/$fileName:t > /dev/null
+
+        if (($?)); then
+
+          echo "==================================="
+          echo "($mode) Processing with SED($script): $fileName"
+          diff $fileName /tmp/$fileName:t
+
+          if [ $mode = "exe" ]; then  # do it for REAL
+             cp /tmp/$fileName:t $fileName
+             rm /tmp/$fileName:t
+          else
+             rm /tmp/$fileName:t
+          fi
+
+        fi
+
+done
+

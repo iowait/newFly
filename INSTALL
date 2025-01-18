@@ -1,0 +1,213 @@
+INSTALLATION OF FLY flight management software
+
+Check the website -> https://www.SoaringTools.org/ for more documentation & support
+
+#### OUR FAMOUS ONE HOUR TERRIBLY MANUAL INSTALLATION - just kidding! Help us make it better! #####
+
+1) Install the code -- get in top directory, for this demo we expect /fly to
+be the top URL for access
+
+# DO NOT choose 'fly' as your destination, security by obscurity...
+# If you have problems with using https from your internet provider
+# you can go to the gitlab project (https://gitlab.com/jmurtari/fly)
+# and download a zip/tar file, then transfer to your website..
+
+[murtari@torch ~]$ git clone https://gitlab.com/jmurtari/fly.git fly
+Initialized empty Git repository in /pub/users/murtari/www/fly/.git/
+remote: Enumerating objects: 193, done.
+remote: Counting objects: 100% (193/193), done.
+remote: Compressing objects: 100% (144/144), done.
+remote: Total 193 (delta 44), reused 177 (delta 36), pack-reused 0
+Receiving objects: 100% (193/193), 1.44 MiB, done.
+Resolving deltas: 100% (44/44), done.
+
+2) Setup the initial database.  You need to record the database name,
+user name, and password. They all need to be different and at least 8 characters
+long.  The password must include 1 uppercase, 1 numeric, 1 special.
+Don't cheat, when the software starts it will check.
+
+[murtari@torch ~]$ cd fly
+[murtari@torch fly]$ dir
+account_content.php  debug.inc                edit_sched_content.php*  forgot.php            load_calendar_content.php  reset_password_content.php
+account.php          edit_glider_content.php  edit_sched.php*          header.inc@           load_calendar.php          reset_password.php
+ack_duty.php         edit_glider.php          error_log                images/               login.php*                 reset.php
+active_members.php   edit_member_content.php  etc/                     inactive_members.php  logout.php                 test_sched.php
+aircraft.php*        edit_member.php          event_sched.php          index.html            password_content.php
+bin/                 edit_minutes.php*        fix.sed                  INSTALL               password.php
+COPYING              edit_opslog.php          flying_sched.php*        js/                   php_includes.inc*
+css/                 edit_photo.php           forgot_content.php       lib/                  README
+
+[murtari@torch fly]$ dir etc
+addGnu.sed  fly.db.sql.gz mode.inc
+
+# NOTE: on systems if you 'sudo su' and become root, no need to use -u and -p options
+[murtari@torch fly]$ mysqladmin -u root -p'XXXXXX' create BigBippity
+
+[murtari@torch fly]$ zcat etc/fly.db.sql.gz | mysql -u root  -p'XXXXXX' BigBippity
+
+[murtari@torch fly]$ mysql -u root  -p'XXXXXX'
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+
+mysql> CREATE USER 'BigBongo'@'localhost' IDENTIFIED BY 'Never4^Guess';
+Query OK, 0 rows affected (0.05 sec)
+
+mysql> GRANT ALL PRIVILEGES ON BigBippity.* to 'BigBongo'@'localhost';
+Query OK, 0 rows affected (0.01 sec)
+
+## NOT USED NOW, BUT IF YOU EVER WANT TO CHANGE THE DB PASSWORD LATER
+mysql> ALTER USER BigBongo@localhost IDENTIFIED BY 'Bigger4?Newer';
+
+2a) Confirm the database setup by a login, show the tables, give
+yourself admin access
+
+[murtari@torch fly]$ mysql -u BigBongo -p'Never4^Guess' BigBippity
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 504499
+
+mysql> show tables;
+----------------------+
+| Tables_in_BigBippity |
++----------------------+
+| Calendar        |
+| Duty            |
+| EventLog        |
+| Glider          |
+| GliderStatus    |
+| GliderStatusLog |
+| Members         |
+| Reservations    |
+| Sessions        |
+| hfl             |
++-----------------+
+10 rows in set (0.00 sec)
+
+
+# By default there is one privileged admin user. Find their MemberID
+# with:
+
+mysql> SELECT lastName, MemberID FROM Members WHERE access LIKE '%ADMIN%';
++----------+----------+
+| lastName | MemberID |
++----------+----------+
+| Admin    |       24 |
+
+# You must change the email address to your address
+# MAKE SURE you get 1 row matched, 1 row changed
+
+mysql> UPDATE Members SET emailAddr='you@youremail.org'  WHERE MemberID=24;
+Query OK, 1 row affected (0.00 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+
+
+3) Configure the software
+
+# Edit some config files in the fly folder
+[murtari@torch fly]$ cd lib
+
+# Copy the template file for configuration to the lib directory
+[murtari@torch lib]$ cp ../etc/mode.inc .
+
+[murtari@torch lib]$ vi mode.inc
+
+# In the mode.inc insert the values for FAC_DB to match your DB name,
+# also DB_PASS, DB_USER to match the DB user/password
+
+# Change the ROOT_DIR to absolute path to the home directory for your
+# web site.  Change FLY_DIR to be ONLY the name of the directory where
+# you installed the FLY software, no slashes.  Should be a
+# subdirectory of your ROOT_DIR
+
+# Check the other values that use the word "fly" and set as
+# appropriate
+
+# At the end of the file you'll find entries for High-Far-Long
+# competition If it's to be used, you must update with the name,
+# location of your field.
+
+
+3a) Setup debug/hfl/photos dirs needed
+
+# create the debug.log, set the permission so webserver can only write, no read
+[soaringtools@torch lib]$ cd ..
+[soaringtools@torch fly]$ touch debug.log
+[soaringtools@torch fly]$ chmod go=w debug.log
+[soaringtools@torch fly]$ mkdir hfl
+[soaringtools@torch fly]$ chmod go+w hfl
+[soaringtools@torch fly]$ chmod -R go+w photos
+
+
+
+# VERY IMPORTANT, check so read/write matches below
+[soaringtools@torch fly]$ ls -ld debug.log hfl photos
+-rw--w--w- 1 soaringtools www 0    Jun  5 15:56 debug.log
+drwxrwxrwx 2 soaringtools www 4096 Oct  9 13:17 hfl
+drwxrwxrwx 4 soaringtools www 4096 Oct  9 13:01 photos
+
+
+4) Check the basic install location/URL.  This has nothing to do with
+the database or other configuration items.  It just confirms you
+installed it in the proper directory and the URL works.
+
+# If your main website was called:  http://www.murtari.org/
+# Then go to the URL:  http://www.murtari.org/fly
+
+DON'T PANIC - you should see an "Under Construction" page, that's to
+fool people who are just fishing for content.
+
+If you get a 404 or File Not Found, the you did not install FLY as a
+subdirectory/folder underneath the home directory for your website.
+
+If you get a "Forbidden" or "Internal Server error" or other type of
+permission error it may be your provider requires a uniq permission
+set.  Do an 'ls -l' on files you know work and change the fly install
+to the same values.   Also check the .htaccess in the fly directory,
+some options may be incompatible with your server.
+
+5) Passed step #4, now let's try a login!
+
+# GO TO -> http://www.murtari.org/fly/login.php
+
+You should see a screen with a title "FLY Management Software Demo".
+BE CAREFUL: Make sure you don't see a message at the top 
+"MySQL - can't connect to.. on localhost" If you do -> You need to
+back to step 2/3 confirm the values are correct.
+
+You don't the password for the admin account, we'll use the forgotten
+password link at the bottom of the login page, click on that.
+
+Just enter the same email address used earlier when configuring the
+database above.
+
+You should receive an email.  IF NOT - check with your web provider.
+If you get an error message about no matching user, make sure you
+complete the email change step above for the Admin-board user.
+
+# Click on the reset link.  Set your new password, then return to the
+# login screen and use your email address and password.  You should
+# end up on the Control Panel.
+
+If you follow the links across the top, you should see dummy event,
+aircraft, and schedule info.
+
+
+6) Install CRON jobs for backups and schedule reminders/alerts
+
+What follows is a typical CRON installation, commentary above each line:
+
+# Do an nightly backup of the web files and database
+# Replace the word 'fly' with your installation specific info
+30 23 * * * (~/fly/bin/doBackup.php fly) | mail -s "SoaringTools fly backups" joe@fly.org 2>&1
+
+# For situations where weekend flying is primary (SAT/SUN)
+# Send out duty/crew reminders on tuesday and wednesday
+1  1  * * tue,wed  ( cd ~/fly; ~/fly/bin/manageSched.php ) | mail -s "SoaringTools Fly duty reminders" joe@fly.org 2>&1
+
+# To each duty RI or instructor, send an alert email for members who haven't ACK'd
+1  1 *  * thu ( cd ~/fly; ~/fly/bin/manageSched.php -A) | mail -s "SoaringTools Fly ALERT RI" joe@fly.org 2>&1
+
+# Send a message out (using mailing list address) to all club members with the weekend schedule
+9  9 *  * fri ( cd ~/fly; ~/fly/bin/manageSched.php -S) | mail -s "SoaringTools Fly Weekend Schedule" joe@fly.org 2>&1
+
+
+## NEXT REV

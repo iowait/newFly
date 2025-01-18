@@ -1,0 +1,27 @@
+#!/bin/csh -f
+#
+# this script compares the files in two directories.
+#
+if ($#argv < 2) then
+	echo "Usage: diffDir destination_dir files..."
+	echo "< : files in default dir"
+	echo "> : files in destination_dir"
+	exit 1;
+endif
+
+set dir = $argv[1];
+
+echo Diffing directory $dir 
+echo "< : files in default dir"
+echo "> : files in destination_dir"
+
+foreach file (`ls $argv[2-$#argv]`)
+	echo "==================================="
+	echo "Diffing:  $file "
+        if (-d "$file") then
+           echo " ... Skipping, directory"
+           continue
+        endif
+	diff -bB $file $dir/$file
+	echo " "
+end

@@ -1,0 +1,11 @@
+*~
+*.gz
+*.swp
+*.sav
+*.z
+*.log
+bin/dumpDBs.sh
+photos/
+lib/mode.inc
+backups/
+hfl/

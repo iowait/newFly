@@ -1,0 +1,935 @@
+/* 
+    Created on : Dec 5, 2016, 1:41:41 PM
+    Author     : Ted timmons
+*/
+
+.clsBoldRed24{
+   font-weight: bold;
+   color: #ff0000;
+   font-size: 24px;
+}
+.clsBold18{
+   font-weight: bold;
+   font-size: 18px;
+}
+.clsFont16{font-size: 16px;}
+.clsFont18{font-size: 18px;}
+
+.clsCenter{text-align: center;}
+
+.clsLastUpdate{
+   background-color: #ffff00;
+   font-size: 14px;
+   color: #000000;
+}
+
+.clsAlert{
+   background-color: #0ff0f0;
+}
+.clsAlert span{
+   font-size: 24px;
+}
+tr.clsInactive{background-color: #c1c1c1;}
+
+table.clsBorder{
+   border-collapse: collapse;
+   border: 3px solid #bb0000;
+   margin-left: auto;
+   margin-right: auto;
+}
+.clsBorder th, .clsBorder td{
+   border: 1px solid #bb0000;
+   padding: 10px;
+}
+
+a:link.aMembers{font-size: 20px;}
+
+a.clsRedirectAnchor {background: #ffcc00;}
+a:link.clsRedirectAnchor{font-size: 36px;}
+
+table.clsEvents  {
+   border-collapse: collapse;
+}
+
+.clsEvents td {
+   text-align: center;
+   border: 1px solid #000000;
+   border-top-width: 1px;
+   border-right-width: 1px;
+   border-bottom-width: 1px;
+   border-left-width: 1px;
+   padding: 10px 20px;
+}
+.clsEvents th {
+   background-color: #911717;
+   color: #ffffff;
+   line-height: 52px;
+    
+   height: 43px;
+    
+    
+   font-size: 18px;
+   text-align: center;
+   border: 1px solid #000000;
+   border-top-width: 1px;
+   border-right-width: 1px;
+   border-bottom-width: 1px;
+   border-left-width: 1px;
+}
+.clsEvents tr:nth-child(even) {background-color: #f2f2f2}
+
+
+/* ========================================================================== */
+/*                        START Links formating                               */
+/*                                                                            */
+
+a:link, a:visited {
+    color: #000000;
+    /* text-decoration: underline; */
+    font-family: Verdana,Tahoma;
+    font-size: 11px;
+}
+/* ---------------------------------------------------------------------------*/
+a.clsMenu_link, a.clsMenu_link_selected {
+    /* This increases the clickable area of the link */
+    display: inline-block;
+    position: relative;
+    padding: 0px  13px 0px  15px;    
+    margin:  0px -13px 0px -15px;
+    /* --------------------------------------------- */
+    color: #ffffff;
+    text-decoration: none;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif, Verdana,Tahoma;
+    font-size: 13px;
+}
+a.clsMenu_link_selected { color: #000000; }
+/* ---------------------------------------------------------------------------*/
+a.clsBread_cmb_link, a.clsBread_cmb_link:link, a.clsBread_cmb_link:visited, a.clsBread_cmb_link:active {
+    font-weight: normal;
+    font-size: 11px;
+    color: #2B2B2B;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    text-decoration: underline;
+}
+a.clsBread_cmb_link:hover { color:#2487C6; }
+/* ---------------------------------------------------------------------------*/
+.terms-privacy, a.terms-privacy, a.terms-privacy:link, a.terms-privacy:visited, a.terms-privacy:active {
+    font-weight: normal;
+    font-size: 11px;
+    color: #B6B6B6;
+    font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+    text-decoration: none;
+}
+a.terms-privacy:hover {
+    text-decoration: underline;
+    color: #FFFFFF;
+}
+/* ---------------------------------------------------------------------------*/
+.reg_login, a.reg_login, a.reg_login:link, a.reg_login:visited, a.reg_login:active  {
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	height: 19px;
+	font-weight: bold;
+	color: #FFFFFF;
+	text-decoration: none;
+	background: #7C0613 url('images/member_btn.png') repeat;
+	white-space: nowrap;
+	display: block;
+	width: auto;
+	border: 1px solid #7F0613;
+	padding:1px 10px 0px 10px;
+        float: right;
+        position: relative;
+        top: 25px;
+}
+a.reg_login:hover { background-image: url('images/member_btn_hover.png'); }
+/* ---------------------------------------------------------------------------*/
+/*                          END Links formating                               */
+/*/* =========================================================================*/
+
+
+#idWebcam {
+    padding: 15px 10px 5px 5px;
+    width: 440px;
+    height: 290px;
+}
+
+
+/* ===========================================================================*/
+/*                        START Modal Rules                                   */
+/*                                                                            */
+.modalDialog {
+    position: fixed;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: rgba(0,0,0,0.8);
+    z-index: 99999;
+    opacity:0;
+    -webkit-transition: opacity 400ms ease-in;
+    -moz-transition: opacity 400ms ease-in;
+    transition: opacity 400ms ease-in;
+    pointer-events: none;
+}
+.modalDialog p {
+   line-height: initial;
+   font-size: 36px; 
+   text-align: center; 
+}
+
+.modalDialog:target {
+    opacity:1;
+    pointer-events: auto;
+}
+
+.modalDialog > div {
+    width: 300px;
+    position: relative;
+    margin: 10% auto;
+    padding: 5px 20px 13px 20px;
+    border-radius: 10px;
+    background: #fff;
+    background: -moz-linear-gradient(#fff, #999);
+    background: -webkit-linear-gradient(#fff, #999);
+    background: -o-linear-gradient(#fff, #999);
+}
+.close {
+    background: #606061;
+    color: #FFFFFF;
+    line-height: 25px;
+    position: absolute;
+    right: -12px;
+    text-align: center;
+    top: -10px;
+    width: 24px;
+    text-decoration: none;
+    font-weight: bold;
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
+    -moz-box-shadow: 1px 1px 3px #000;
+    -webkit-box-shadow: 1px 1px 3px #000;
+    box-shadow: 1px 1px 3px #000;
+}
+
+.close:hover { background: #00d9ff; }
+
+
+/*                          END Modal rules                                   */
+/*/* =========================================================================*/
+
+
+
+ul li {
+    list-style: square outside;
+    list-style-position: inherit;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: normal;
+    font-style: normal;
+    color: #424242;
+    padding: 4px;
+    text-align: left;
+}
+
+
+/* ========================================================================== */
+/*                        START images formating                              */
+/*                                                                            */
+
+img{
+    border: 0;
+    border-style: none;
+    vertical-align: top;
+    margin: 0;
+    padding: 0;
+    text-indent: -999px;
+    font-size: 0;
+    
+}
+.img-right {
+    float: right;
+    margin-left: 10px;
+}
+.img-left {
+    float: left;
+    margin: 0px 10px 0px 10px;
+}
+/*                        END images formating                                */
+/* ========================================================================== */                                                                          
+
+/* -------------  body styles  ---------------------------------------- */
+body {
+     background: url("../imgs/bg.gif") left top repeat-x;
+     border: none;
+     margin: 0;
+     padding: 0;
+}
+
+span{
+    text-align: left;
+}
+
+/* -------------  div styles  ---------------------------------------- */
+div{
+    /* display: block; BLOCK is the default - not needed */
+    margin: 0;
+    border: none;
+    padding: 0;
+    text-align: center;
+}
+.clsTextLeft {
+    text-align: left;
+}
+
+#divHeader, #divContent {
+    width: 1002px;
+    border: 0;
+    margin: 0 auto; 
+    padding: 0;
+}
+
+
+
+#divContent{
+    /* position: relative;
+    top: 75px; 
+    border: 3px solid green;*/
+}
+
+#divLogo {
+    border: 0;
+    margin: 0;
+    vertical-align:top;
+    padding: 0;
+    font-size: 0; /* THIS finally got rid of the space between the images */
+    text-align: left;
+}
+
+#divMenu{
+   /* position: relative;
+    top: 75px;
+    border: 3px solid green;*/
+}
+
+/*    Footer starts here  */
+#divFooter {
+    width: 100%;
+    border: 0;
+    margin: 0 auto; 
+    padding: 0;
+}
+#divFooter_top{
+    background-color: #93030f;
+    height: 10px;
+}
+#divFooter_mid{
+    background-color: #515151;
+    color: #ffffff;
+    border: 2px #737373 solid;
+    text-align: center;
+}
+#divFooter_bottom{
+    background-color: #292929;
+    color: #ffffff;
+    text-align: center;   
+}
+/*    Footer ends here  */
+
+
+
+#divYouAreHere{
+     text-align: left;
+     height: 30px;
+}
+
+.clsMenubar{
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.clsMenu_rootitem{
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    background: url("images/up.png") no-repeat top right;
+    white-space: nowrap;
+    float: left;
+    line-height: 36px;
+    padding: 0px 20px 0px 20px;
+}
+
+/*  Main menu hover  */
+/*  This is not used
+.clsMenu_rootitem_hover
+{  
+	color:#ffffff;
+	font-size: 13px; 
+	font-weight:bold;
+	font-family:Arial, Helvetica, sans-serif;
+	text-align:center;
+	background:url(images/over.png) no-repeat top right;
+	white-space:nowrap;
+	float:left;
+	line-height:36px;	
+	padding:0px 20px 0px 20px;	
+}
+*/
+
+/* This would be used when writing the page to designate this menu item is selected  */
+.clsMenu_rootitem_selected{
+    color: #000000;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    text-align: center;
+    background: url("images/active.png") no-repeat top right;
+    white-space: nowrap;
+    float: left;
+    line-height: 36px;
+    padding: 0px 20px 0px 20px;
+}
+
+
+/* ========================================================================== */
+/*                        START navigation                                    */
+/*                                                                            */
+nav ul {
+    padding:0;
+    margin:0;
+    list-style: none;
+    position: relative;
+    z-index: 50;
+}
+nav ul li {
+    display:inline-block;
+    /* background-color: #bb0000;   was: #E64A19; not used */
+}
+
+/* Hide Dropdowns by Default */
+nav ul li ul {
+    display: none;
+    position: absolute; 
+    top: 35px; /* was 60px */
+    text-align: left;
+}
+
+/* Hover */
+nav ul li:hover {
+    color:#ffffff;
+    font-size: 13px; 
+    font-weight:bold;
+    font-family:Arial, Helvetica, sans-serif;
+    text-align:center;
+    background:url(images/over.png) no-repeat top right;
+    white-space:nowrap;
+    float:left;
+    line-height:36px;	
+    padding:0px 20px 0px 20px;
+}
+
+/* Display Dropdowns on Hover */
+nav ul li:hover > ul {
+    display:inherit;
+}
+
+/* First Tier Dropdown */
+/*  was:
+nav ul ul li {
+    background-color: #F4F4F4;
+    line-height: 2em;
+    width:170px;
+    float:none;
+    display:list-item;
+    position: relative;
+    border-radius: 0;   
+    z-index: 50;
+}
+*/
+.clsMenu_subitem{
+    list-style: none;
+    color: #000000;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 0px 5px 0px 5px;
+    background-color: #F4F4F4;
+    line-height: 2em;
+    float:none;
+    display:list-item;
+    position: relative;
+    border-radius: 0;  /* CSS3 */  
+    z-index: 50;
+}
+nav ul ul li a {
+    color: #000000;
+    font-size: 13px;
+    font-weight: bold;
+    padding: 0px 5px 0px 5px;
+    line-height: 2em;
+}
+nav ul ul li a:hover {
+    color:#ee0000;
+}
+nav ul ul li:hover {
+    background: #F4F4F4;
+    text-align: left;
+    font-size: 13px; 
+    font-weight:bold;
+    font-family:Arial, Helvetica, sans-serif;
+    white-space:nowrap;
+    float:none;
+    padding: 0px 5px 0px 5px;
+    display:list-item;
+    position: relative;
+    border-radius: 0;  /* CSS3 */  
+    z-index: 55;
+}
+
+
+/* Second, Third and more Tiers	*/
+nav ul ul ul li {
+    position: relative;
+    top:-60px; 
+    left:170px;
+    z-index: 50;
+    
+    
+}
+.clsMenu_submenu {
+    background-color: #F4F4F4;
+    z-index: 1000;
+    font-size: 11px;
+    font-weight: bold;
+    text-align: left;
+    color: #000000;
+    line-height: 2em;
+    padding: 0px 5px;
+    margin: 0px;
+}
+
+/* Change this in order to change the Dropdown symbol */
+nav li > a:after { content:  ' +'; }
+nav li > a:only-child:after { content: ''; }
+
+/* nav a:hover {background-color: #000000; }  */
+
+nav a {
+    /*
+    display: block;
+    padding: 0 10px;	
+    font-size: 20px;
+    line-height: 60px;
+     background-image: linear-gradient(to bottom, #e07e7e 0%, #a00201 100%);
+    */
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer;
+}
+.clsSelected {
+    text-decoration: none;
+    color: #000000;
+    /* 
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 13px;
+    text-align: center;
+    background: url("images/active.png") no-repeat top right;
+    white-space: nowrap;
+    float: left;
+    line-height: 36px;
+    padding: 0px 20px 0px 20px;
+    */
+}
+/*                        END navigation                                      */
+/* ========================================================================== */
+
+
+/* ----------------  Logo class styles  ------------------------------------- */
+.clsLogo-left {
+    background: url("../imgs/logo-left.png") no-repeat top left;
+    width: 31px;
+    height: 83px;
+}
+.clsLogo-mid {
+    background: url("../imgs/logo-mid.png") repeat-x top left;
+    width: 278px;
+    height: 73px;
+}
+.clsLogo-right {
+    background: url("../imgs/logo-right.png") no-repeat top left;
+    width: 31px;
+    height: 83px;
+}
+/* ----------------  Title class styles  ------------------------------------ */
+.clsFloatLeft  { float: left;}
+#divRight { float: left;} /* width was 486 */
+/*
+#divLeft  { width: 506px; float: left;}
+#divRight { width: 496px; float: left;}  width was 486 */
+
+.clsTitle-left {
+    background: url("../imgs/header_left.png") no-repeat top left;
+    width: 18px;
+    height: 43px;  
+}
+.clsTitle-right {
+    background: url("../imgs/header_right.png") no-repeat top left;
+    width: 18px;
+    height: 43px;
+}
+
+.clsTitle-mid{
+    color: #ffffff;
+    font-size: 13px;
+    font-weight: bold;
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: left;
+    background: url("../imgs/header_mid.png") repeat top left;
+    white-space: nowrap;
+    line-height: 52px;
+    padding: 0px 0px 0px 0px;
+    display: inline-block; /* this makes setting span height possible */
+    height: 43px;
+}
+
+/* ----------------  Content class styles  ---------------------------------- */
+.tblContent-left {
+    background: url("../imgs/container_l.png") repeat top left; /* 18w x 1h */
+    width: 18px;
+    vertical-align: top;
+    height: 343px;  
+}
+.clsContent-left {
+    display: table-cell; /* new 12/29/2016 */
+    background: url("../imgs/container_l.png") repeat top left; /* 18w x 1h */
+    width: 18px;
+    /* height: 543px; */
+}
+.clsContent-right {
+    display: table-cell; /* new 12/29/2016 */
+    background: url("../imgs/container_r.png") repeat top left;
+    width: 18px;
+    height: 543px;
+}
+.clsContent-left2 {
+    background: url("../imgs/container_l.png") repeat top left; /* 18w x 1h */
+    width: 18px;
+    height: 320px; 
+}
+.clsContent-right2 {
+    background: url("../imgs/container_r.png") repeat top left;
+    width: 18px;
+    height: 320px;
+}
+
+.clsContent-left3 {
+    background: url("../imgs/container_l.png") repeat top left; /* 18w x 1h */
+    width: 18px;
+    height: 530px; 
+}
+.clsContent-right3 {
+    background: url("../imgs/container_r.png") repeat top left;
+    width: 18px;
+    height: 530px;
+}
+
+.clsContent-left4 {
+    display: table-cell; /* new 12/29/2016 */
+    background: url("../imgs/container_l.png") repeat top left; /* 18w x 1h */
+    width: 18px;
+}
+.clsContent-left5 {
+    display: table-cell; /* new 12/29/2016 */
+    background: url("../imgs/container_l.png") repeat top left; /* 18w x 1h */
+    width: 18px;
+    /*padding: 0px 5px 0px 0px;*/
+}
+.clsContent-mid4{
+    display: table-cell;  /*inline-block;  this makes setting span height possible */
+    background-color: #ffffff;
+    text-align: left;
+    /*width: 460px;*/
+}
+.clsContent-mid5{
+    display: table-cell;  /*inline-block;  this makes setting span height possible */
+    background-color: #ffffff;
+/*    width: 966px;*/
+    text-align: left;
+}
+.clsContent-right4 {
+    display: table-cell; /* new 12/29/2016 */
+    background: url("../imgs/container_r.png") repeat top left;
+    width: 18px;
+    /*padding:  0px 5px 0px 0px;*/
+}
+
+
+.clsContent-mid-half1{
+    display: table-cell;  /* was: inline-block;  this makes setting span height possible */
+    background-color: #ffffff;
+    /* width: 470px; */
+}
+.clsContent-mid-half2{
+    display:  table-cell;  /* was: inline-block; this makes setting span height possible */
+    background-color: #ffffff;
+}
+.clsContent-mid-half3{
+    display: table-cell;  /*inline-block;  this makes setting span height possible */
+    background-color: #ffffff;
+    width: 962px;
+}
+
+
+.clsContent-bl {
+    background: url("../imgs/container_bl.png") no-repeat top left;
+    width: 18px;
+    height: 19px;
+}
+.clsContent-b {
+    background: url("../imgs/container_b.png") repeat top left;
+    height: 19px;
+}
+
+.clsContent-br {
+    background: url("../imgs/container_br.png") no-repeat top left;
+    width: 18px;
+    height: 19px;
+}
+
+/* ----------------  END Content class styles  ------------------------------ */
+
+.clsClearDiv{
+    clear: left;
+}
+.clsSpacerRow18{
+    height: 18px;
+}
+.clsSpacerRow25{
+    height: 25px;
+}
+.clsSpacerCol div{
+    display: inline-block;
+    width: 50px;
+}
+
+
+/* ---------------------------------------------- */
+.clsFullWidth{
+/*    width: 1002px;  1/8/2017*/
+    text-align: left;
+}
+.clsHalfWidth{
+/*    width: 506px;  1/8/2017*/
+    float: left;
+    text-align: left;
+}
+.clsHalfWidth2{
+/*    width: 496px;  was 486   1/8/2017*/
+/*    float: left;*/
+    text-align: left;
+/*    display: inline-block;*/
+}
+.clsFullContent{
+    text-align: left;
+}
+/* ---------------------------------------------- */
+
+
+
+
+
+
+
+.clsHalfLeft div{
+    width: 400px;
+    float: left;
+}
+.clsHalfRight div{
+    margin-left: 425px;
+}
+
+.copy-right {
+    font-size: 11px;
+    color: #B6B6B6;
+    font-family: Verdana, Tahoma, Arial, Helvetica, sans-serif;
+    font-weight: normal;
+}
+
+p{
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    font-size: 11px;
+    line-height: 18px;
+}
+h2 {
+    font-weight: normal;
+    font-size: 20px;
+    color: #666644;
+    font-family: Tahoma, Arial, Helvetica;
+    line-height: 36px;
+    letter-spacing: normal;
+    margin-top: 8px;
+    margin-bottom: 10px;
+}
+
+h3 {
+    font-weight: normal;
+    font-size: 12px;
+    color: #003366;
+    font-family: Tahoma, Arial, Helvetica;
+    line-height: 36px;
+    letter-spacing: normal;
+    margin-top: 8px;
+    margin-bottom: 10px;
+}
+
+.bold {
+    font-weight: bold;
+}
+.darkgray2 {
+    color: #505050;
+}
+.arial {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 11px;
+}
+
+
+
+/* ========================================================================== */
+/*                        START  table styles                                 */
+/*                                                                            */
+
+/*
+table tr td {
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+    border-spacing: 0px;
+    border-collapse: separate;
+}
+*/
+/*th{
+    text-align: center;
+}*/
+
+#tblBody {
+    width: 1002px;
+    border: 0px solid green;
+    margin: 0; 
+}
+
+
+#tblLogo table{
+    border: 0px solid pink;
+    border: 0;
+}
+
+#tblRides {
+    /*text-align: center;*/
+    border-collapse: collapse;
+}
+#tblRides {
+    text-align: center;
+    border: 1px solid #000000;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-spacing: 1px;
+    /*border-collapse: separate;*/
+}
+
+
+/* -------------  css table styles  ---------------------------------------- */
+.clsTable{
+    display: table;
+    border: 2px red solid;
+}
+.clsRow{
+    display: table-row;
+    border: 2px green solid;
+}
+.clsCell{
+    display: table-cell;
+    border: 2px blue solid;
+}
+
+
+.clsTblBorderCenter {
+    /*text-align: center;*/
+    border-collapse: collapse;
+}
+.clsTblBorderCenter {
+    text-align: center;
+    border: 1px solid #000000;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-spacing: 1px;
+    /*border-collapse: separate;*/
+}
+
+.clsTblNoBorderLeft {
+    /*text-align: center;*/
+    border-collapse: collapse;
+}
+.clsTblNoBorderLeft {
+    text-align: left;
+    border: 0;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+    border-spacing: 2px;
+    /*border-collapse: separate;*/
+}
+
+
+.clsTblFAQ {
+    /*text-align: center;*/
+    border-collapse: collapse;
+}
+.clsFAQ  {
+    text-align: left;
+    border: 0;
+    border-top-width: 0px;
+    border-right-width: 0px;
+    border-bottom-width: 0px;
+    border-left-width: 0px;
+    border-spacing: 2px;
+    
+}
+
+.node-body{text-align: left;}
+
+span.clsBold18 {
+   font-size: 18px;
+   font-weight: bold;
+}
+span.clsBold24 {
+   font-size: 24px;
+   font-weight: bold;
+}
+
+
+/*                        END  table styles                                 */
+/* ========================================================================== */
+
+
+.clsSubHead {
+	font-weight: bold; font-size: 11px; color: #000000; font-family: Tahoma, Arial, Helvetica;
+}
+
+
+/*     NOT USED ITEMS  -  TO BE DELETED
+ 
+
+*/

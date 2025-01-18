@@ -1,0 +1,42 @@
+/* 
+    Created on : 2013
+    Author     : Ted timmons
+*/
+table.tblSchedule {
+  table-layout: fixed; 
+  width: 100%;
+  *margin-left: -150px;/*ie7*/
+}
+.tblSchedule td, th {
+  text-align: center;
+  vertical-align: top;
+  border-bottom: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  padding: 6px 8px;
+  width:90px;
+}
+.tblX td {width: 40px;}
+
+.clsHoliday{font-weight: bold; color: #ff0000;}
+
+.tblSchedule th {
+  text-align: left;
+  position:absolute;
+  *position: relative; /*ie7*/
+  left:0; 
+  width:133px;
+}
+col.newmonth {
+  background-color: #ccc;
+  width:20px;
+}
+col.clsSoar{
+   background-color: #c6efce;
+}
+.outer {position:relative}
+.inner {
+  overflow-x:scroll;
+  overflow-y:visible;
+  width: 817px;  /* was:  900px; */
+  margin-left:150px;
+}

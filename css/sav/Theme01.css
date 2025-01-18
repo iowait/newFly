@@ -1,0 +1,18 @@
+﻿html,body
+{
+	background-color:Black;
+	color:White; 
+	margin:0;
+    padding:0;
+    height:100%;
+}
+/* ---------------------------------- */
+a {
+    outline: 0;
+    text-decoration: underline;
+}
+a:link {color: #0099FF;}
+a:visited {color: #0099FF;}
+a:hover {color: #FFFF00;}
+a:active {color: #33FF66;}
+/* ---------------------------------- */

@@ -1,0 +1,27 @@
+#
+# sync whats in the database with mailing lists
+#
+day=`date +%F`
+dbFile=db_members.txt.$day
+listFile=members_list.txt.$day   # record the list before the change
+
+# get current DB members
+echo "SELECT emailAddr FROM Members WHERE memberType != 'Pending Delete' AND memberType != 'other' ORDER by emailAddr;" | mysql -ufly -p'fly!1903' fly | tail -n +2 > $dbFile
+
+# record/save current list
+/var/lib/mailman/bin/list_members members > $listFile
+
+# add people from extra file to dbFile
+# manual additions
+cat members_extra.txt $dbFile | grep -v '^#' >> $dbFile.merge
+
+# -n is TEST
+/var/lib/mailman/bin/sync_members -w=yes -a=yes -f $dbFile.merge members > changes.$day
+
+cat changes.$day
+
+echo "Purging old data files over 30 days"
+find . -name "db_members.txt.2*" -mtime +30 -ls -exec rm {} \;
+find . -name "members_list.txt.2*" -mtime +30 -ls -exec rm {} \;
+
+
