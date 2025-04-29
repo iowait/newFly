@@ -33,17 +33,16 @@ account.php          edit_glider_content.php  edit_sched.php*          header.in
 ack_duty.php         edit_glider.php          error_log                images/               login.php*                 reset.php
 active_members.php   edit_member_content.php  etc/                     inactive_members.php  logout.php                 test_sched.php
 aircraft.php*        edit_member.php          event_sched.php          index.html            password_content.php
-bin/                 edit_minutes.php*        fix.sed                  INSTALL               password.php
+bin/                 edit_minutes.php*        INSTALL                  password.php
 COPYING              edit_opslog.php          flying_sched.php*        js/                   php_includes.inc*
 css/                 edit_photo.php           forgot_content.php       lib/                  README
 
-[murtari@torch fly]$ dir etc
-addGnu.sed  fly.db.sql.gz mode.inc
 
 # NOTE: on systems if you 'sudo su' and become root, no need to use -u and -p options
 [murtari@torch fly]$ mysqladmin -u root -p'XXXXXX' create BigBippity
 
-[murtari@torch fly]$ zcat etc/fly.db.sql.gz | mysql -u root  -p'XXXXXX' BigBippity
+# NOTE: use etc/fly.db.demo.sql for the following step if you want to pre-populte the db with sample data
+[murtari@torch fly]$ cat etc/fly.db.sql | mysql -u root  -p'XXXXXX' BigBippity
 
 [murtari@torch fly]$ mysql -u root  -p'XXXXXX'
 Welcome to the MySQL monitor.  Commands end with ; or \g.
@@ -128,12 +127,13 @@ Rows matched: 1  Changed: 1  Warnings: 0
 
 3a) Setup debug/hfl/photos dirs needed
 
-# create the debug.log, set the permission so webserver can only write, no read
+# Create the debug.log, set the permission so webserver can only write, no read
 [soaringtools@torch lib]$ cd ..
 [soaringtools@torch fly]$ touch debug.log
 [soaringtools@torch fly]$ chmod go=w debug.log
 [soaringtools@torch fly]$ mkdir hfl
 [soaringtools@torch fly]$ chmod go+w hfl
+[soaringtools@torch fly]$ mkdir photos
 [soaringtools@torch fly]$ chmod -R go+w photos
 
 

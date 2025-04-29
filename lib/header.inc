@@ -163,7 +163,7 @@ if (isset($PageInformation[$scriptName]['cache-control'])) {
 		    <table width="100%" border="0" cellspacing="0" cellpadding="0">
                      <tr>
                        <td style='width:25%'>
-		         <a href="/" border='1'><img src="/<?=FLY_DIR?>/images/ask21_grass.jpg" height='150'></a>
+		         <a href="/" border='1'><img src="/<?=FLY_DIR?>/images/flylogo.jpg" height='150'></a>
 		       </td>
 		       
 		       <td style='width:50%'>		
