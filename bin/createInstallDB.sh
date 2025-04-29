@@ -9,8 +9,8 @@
 # Run a current dump
 echo "Running a current DB dump to backups, some warnings expected"
 cd ~
-~/socket.org/fly/bin/doBackup.php fly
-cd ~/socket.org/fly || exit 2
+~/fly/bin/doBackup.php fly
+cd ~/fly || exit 2
 date=`date +%m%d`
 backup=fly.db.$date.sql.gz
 
